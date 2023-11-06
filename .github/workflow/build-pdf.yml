@@ -20,8 +20,8 @@ jobs:
           
       - name: Build PDF
         run: |
-          pdflatex -output-directory=output yourfile.tex  # Replace 'yourfile.tex' with your LaTeX source file name
-          mv output/yourfile.pdf output/output.pdf  # Rename the PDF file as desired
+          pdflatex -output-directory=output src.tex  # Replace 'yourfile.tex' with your LaTeX source file name
+          mv output/yourfile.pdf resume.pdf  # Rename the PDF file as desired
         working-directory: ${{ github.workspace }}
         
       - name: Upload PDF artifact
