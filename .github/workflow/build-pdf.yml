@@ -13,6 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up APT
+        uses: actions/setup-apt@v2
+        with:
+          release: '20.04'  # Use a suitable Ubuntu release version
+
       - name: Install LaTeX
         run: |
           sudo apt-get update
