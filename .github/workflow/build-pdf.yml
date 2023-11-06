@@ -1,0 +1,31 @@
+name: Build LaTeX to PDF
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger the workflow on
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install texlive-full
+          
+      - name: Build PDF
+        run: |
+          pdflatex -output-directory=output yourfile.tex  # Replace 'yourfile.tex' with your LaTeX source file name
+          mv output/yourfile.pdf output/output.pdf  # Rename the PDF file as desired
+        working-directory: ${{ github.workspace }}
+        
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: pdf-output
+          path: resume.pdf
